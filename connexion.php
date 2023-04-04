@@ -2,21 +2,13 @@
 /**
  * Connexion à la BDD
  */
-
+$dbconfig = parse_ini_file(".env");
 // Localisation de la BDD
-const HOST = 'localhost';
-
-// Nom d'utilisateur
-const USER = 'root';
-
-// Mot de passe
-const PASSWD = '';
 
 // Nom de la base de donnée
-const DBNAME = 'todos_list_ajax';
 
 try {
-    $pdo = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, USER, PASSWD, [
+    $pdo = new PDO("mysql:host=" . $dbconfig["HOST"] . ";dbname=" . $dbconfig["DBNAME"], $dbconfig["USER"], $dbconfig["PASSWD"], [
         // Gestion des erreurs PHP/SQL
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_WARNING,
         // Gestion du jeu de caractères
